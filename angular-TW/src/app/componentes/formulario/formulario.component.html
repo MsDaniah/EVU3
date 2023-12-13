@@ -1,0 +1,105 @@
+<div class="container">
+    <div>
+        <h1>Crear Usuario</h1>
+    </div>
+<!-- -------------------------------------------------------------------------FORMULARIO CREAR USUARIO----------------------------------------------------------------------------------------- -->
+
+    <form [formGroup]="formulario" method="POST">
+        <!-- INPUT PARA Campo1-->
+        <div class="form-group">
+            <div>
+                <label>Nombre</label>
+                <!-- INPUT para el campo nombre-->
+                <input type="text" placeholder="Ingresa nombre" formControlName="nombre" required>
+                <!-- Mostrar el error para el campo nombre-->
+                <small *ngIf=" formularioReactivo.nombre?.errors?.required && formularioReactivo.nombre.touched ">
+                    El nombre es requerido
+                </small>
+            </div>
+        </div>
+        <!-- FIN INPUT PARA nombre-->
+
+        <!-- INPUT PARA apellido-->
+        <div class="form-group">
+            <div>
+                <label>Apellido</label>
+                <!-- INPUT para el campo apellido-->
+                <input type="text" placeholder="Ingresa tu apellido" formControlName="apellido">
+            </div>
+        </div>
+        <!-- FIN INPUT PARA apellido-->
+
+        <!-- INPUT PARA rut-->
+        <div class="form-group">
+            <div>
+                <label>RUT</label>
+                <!-- INPUT para el campo rut-->
+                <input type="text" placeholder="Ingresa RUT" formControlName="rut" required>
+            </div>
+        </div>
+        <!-- FIN INPUT PARA rut-->
+
+        <!-- INPUT PARA correo-->
+        <div class="form-group">
+            <div>
+                <label>Correo</label>
+                <!-- INPUT para el campo correo-->
+                <input type="email" placeholder="Ingresa correo" formControlName="correo" required>
+
+            </div>
+        </div>
+        <!-- FIN INPUT PARA correo-->
+
+        <!-- INPUT PARA Campo1-->
+        <div class="form-group">
+            <div>
+                <label>Contraseña</label>
+                <!-- INPUT para el campo contraseña-->
+                <input type="password" placeholder="Ingresa contraseña" formControlName="contrasena" required>
+
+            </div>
+        </div>
+        <!-- FIN INPUT PARA contraseña-->
+
+        <!-- BOTÓN-->
+        <div class="form-group">
+            <div>
+                <button class="btn btn-primary" type="submit" (click)="botonEnviar()"
+                    [disabled]="!formulario.valid">Crear</button>
+            </div>
+        </div>
+        <!-- FIN BOTÓN-->
+    </form>
+
+
+
+    <!-- VER REGISTRO DE USUARIOS -->
+    <button (click)="obtenerRegistro()"  >Obtener Registros</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th scope="col">RUT</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Correo</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let datos of usuarios">
+                <td>{{datos._id}}</td>
+                <td>{{datos.rut}}</td>
+                <td>{{datos.nombre}}</td>
+                <td>{{datos.apellido}}</td>
+                <td>{{datos.correo}}</td>
+                <td><button (click)="eliminar(datos._id)">Eliminar</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+
